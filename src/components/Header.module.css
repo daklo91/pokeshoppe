@@ -4,6 +4,9 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 50px;
+  background-color: white;
+  position: relative;
+  z-index: 999;
 }
 
 .logo-container {

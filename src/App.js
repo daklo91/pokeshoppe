@@ -64,13 +64,24 @@ const App = () => {
     });
   };
 
+  const RemoveFromCart = (pokeIndex) => {
+    setCart((cart) => {
+      return cart.filter((value, i) => i !== pokeIndex);
+    });
+  };
+
   return (
     <Fragment>
       <Router>
         <Header cartLength={cart.length} />
         <Routes>
           <Route path="/" element={<FrontPage pokemonData={pokemonData} />} />
-          <Route path="/cart" element={<CartPage cartInfo={cart} />} />
+          <Route
+            path="/cart"
+            element={
+              <CartPage cartInfo={cart} RemoveFromCart={RemoveFromCart} />
+            }
+          />
           <Route
             path="/:pokemonName"
             element={

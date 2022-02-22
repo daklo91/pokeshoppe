@@ -1,5 +1,4 @@
 import ItemAdvertise from "../components/ItemAdvertise";
-import { Fragment } from "react";
 import classes from "./FrontPage.module.css";
 
 const FrontPage = (props) => {

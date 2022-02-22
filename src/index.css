@@ -4,13 +4,26 @@
 
 body {
   margin: 0;
-  --pressStart2Play: "Press Start 2P", cursive;
   font-family: "Varela Round", sans-serif;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 30px,
+    #e6f9ff 30px,
+    #e6f9ff 60px
+  );
+  background-attachment: fixed;
+
+  /* variables */
+  --pressStart2Play: "Press Start 2P", cursive;
 }
 
 main {
   max-width: 900px;
   margin: auto;
+  background-color: white;
+  box-shadow: 0px 0px 16px 0px rgba(100, 100, 100, 0.5);
+  padding: 40px;
 }
 
 a {

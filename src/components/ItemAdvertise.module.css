@@ -2,8 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px 10px;
+  justify-content: center;
 }
 
 .advertisement-text {
-  margin-top: 50px;
+  padding-top: 50px;
+  margin-top: 0;
+  margin-left: 35px;
 }
