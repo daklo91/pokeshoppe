@@ -1,10 +1,13 @@
-import classes from "./App.module.css";
 import { Fragment, useEffect, useState } from "react";
-import ItemAdvertise from "./components/ItemAdvertise";
 import Header from "./components/Header";
+import FrontPage from "./pages/FrontPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import DetailPage from "./pages/DetailPage";
+import CartPage from "./pages/CartPage";
 
 const App = () => {
   const [pokemonData, setPokemonData] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     if (!pokemonData.length) {
@@ -55,73 +58,27 @@ const App = () => {
     }
   }, [pokemonData]);
 
+  const AddToCart = (pokemon) => {
+    setCart((prevState) => {
+      return [...prevState, pokemon];
+    });
+  };
+
   return (
     <Fragment>
-      <Header />
-      <main>
-        {pokemonData.length < 140 ? (
-          <h1>Loading ...</h1>
-        ) : (
-          <div className={classes["advertise-container"]}>
-            <ItemAdvertise
-              pokemonData={pokemonData}
-              pokemonsToRender={[
-                "mew",
-                "pikachu",
-                "charizard",
-                "articuno",
-                "zubat",
-                "jynx",
-              ]}
-            >
-              Most popular 😮
-            </ItemAdvertise>
-            <ItemAdvertise
-              pokemonData={pokemonData}
-              pokemonsToRender={[
-                "butterfree",
-                "bulbasaur",
-                "squirtle",
-                "mewtwo",
-                "snorlax",
-                "pikachu",
-                "ghastly",
-              ]}
-            >
-              Just in 📨
-            </ItemAdvertise>
-            <ItemAdvertise
-              pokemonData={pokemonData}
-              pokemonsToRender={[
-                "ponyta",
-                "vulpix",
-                "growlithe",
-                "magmar",
-                "charmander",
-                "charmeleon",
-                "ninetales",
-                "rapidash",
-              ]}
-            >
-              Whats hot 🔥
-            </ItemAdvertise>
-            <ItemAdvertise
-              pokemonData={pokemonData}
-              pokemonsToRender={[
-                "voltorb",
-                "magnemite",
-                "electrode",
-                "magneton",
-                "electabuzz",
-                "jolteon",
-                "raichu",
-              ]}
-            >
-              Shockingly cheap ⚡
-            </ItemAdvertise>
-          </div>
-        )}
-      </main>
+      <Router>
+        <Header cartLength={cart.length} />
+        <Routes>
+          <Route path="/" element={<FrontPage pokemonData={pokemonData} />} />
+          <Route path="/cart" element={<CartPage cartInfo={cart} />} />
+          <Route
+            path="/:pokemonName"
+            element={
+              <DetailPage pokemonData={pokemonData} AddToCart={AddToCart} />
+            }
+          />
+        </Routes>
+      </Router>
     </Fragment>
   );
 };

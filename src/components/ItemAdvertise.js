@@ -11,8 +11,8 @@ const ItemAdvertise = (props) => {
           ? props.pokemonData
               .filter(
                 (pokemon) =>
-                  pokemon.name ===
-                  props.pokemonsToRender.find((name) => name === pokemon.name)
+                  pokemon.id ===
+                  props.pokemonsToRender.find((id) => id === pokemon.id)
               )
               .map((pokemon) => (
                 <ItemCard
