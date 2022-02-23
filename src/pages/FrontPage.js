@@ -16,13 +16,13 @@ const FrontPage = (props) => {
           </ItemAdvertise>
           <ItemAdvertise
             pokemonData={props.pokemonData}
-            pokemonsToRender={[12, 1, 7, 150, 143, 25, 92]}
+            pokemonsToRender={[12, 1, 7, 150, 143, 27, 92]}
           >
             Just in 📨
           </ItemAdvertise>
           <ItemAdvertise
             pokemonData={props.pokemonData}
-            pokemonsToRender={[77, 37, 50, 70, 30, 23, 123, 143]}
+            pokemonsToRender={[77, 39, 50, 70, 30, 23, 123, 143]}
           >
             Whats hot 🔥
           </ItemAdvertise>
