@@ -9,14 +9,18 @@ const App = () => {
   const [pokemonData, setPokemonData] = useState([]);
   const [cart, setCart] = useState([]);
 
+  if (pokemonData.length === 151) {
+    console.log(pokemonData);
+  }
+
   useEffect(() => {
     if (!pokemonData.length) {
       fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
         .then((response) => {
           return response.json();
         })
-        .then((data) => {
-          data.results.forEach((pokemon) =>
+        .then((dataList) => {
+          dataList.results.forEach((pokemon) =>
             fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon.name)
               .then((response) => response.json())
               .then((pokeData) => {
@@ -45,15 +49,21 @@ const App = () => {
                     );
                     object.species = speciesData.genera[7].genus;
                     object.description = description.flavor_text;
+                  })
+                  .catch((err) => {
+                    console.log("Error fetching pokemon-species: " + err);
                   });
                 setPokemonData((prevState) => {
                   return [...prevState, object];
                 });
               })
+              .catch((err) => {
+                console.log("Error fetching pokemon: " + err);
+              })
           );
         })
         .catch((err) => {
-          console.log(err);
+          console.log("Error fetching list: " + err);
         });
     }
   }, [pokemonData]);
