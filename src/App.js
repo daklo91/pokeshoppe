@@ -50,12 +50,14 @@ const App = () => {
                     object.species = speciesData.genera[7].genus;
                     object.description = description.flavor_text;
                   })
+                  .then(() => {
+                    setPokemonData((prevState) => {
+                      return [...prevState, object];
+                    });
+                  })
                   .catch((err) => {
                     console.log("Error fetching pokemon-species: " + err);
                   });
-                setPokemonData((prevState) => {
-                  return [...prevState, object];
-                });
               })
               .catch((err) => {
                 console.log("Error fetching pokemon: " + err);
