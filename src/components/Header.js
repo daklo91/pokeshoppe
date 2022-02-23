@@ -1,9 +1,24 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import classes from "./Header.module.css";
 import logo from "../assets/svg/logo.svg";
 import shoppingcart from "../assets/svg/shoppingcart.svg";
 
 const Header = (props) => {
+  const [badgeAnimate, setBadgeAnimate] = useState(false);
+
+  useEffect(() => {
+    setBadgeAnimate(false);
+
+    const timer = setTimeout(() => {
+      setBadgeAnimate(true);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [props.cartLength]);
+
   return (
     <header>
       <Link to="/" className={classes["logo-container"]}>
@@ -14,7 +29,13 @@ const Header = (props) => {
         </div>
       </Link>
       <Link to="/cart" className={classes["shoppingcart-container"]}>
-        <div className={classes["amount-badge"]}>{props.cartLength}</div>
+        <div
+          className={`${classes["amount-badge"]} ${
+            !badgeAnimate ? classes["bopp-animation"] : null
+          }`}
+        >
+          {props.cartLength}
+        </div>
         <img src={shoppingcart} alt="shoppingcart icon" />
       </Link>
     </header>
