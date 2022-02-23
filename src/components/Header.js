@@ -1,7 +1,7 @@
+import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import logo from "../assets/svg/logo.svg";
 import shoppingcart from "../assets/svg/shoppingcart.svg";
-import { Link } from "react-router-dom";
 
 const Header = (props) => {
   return (

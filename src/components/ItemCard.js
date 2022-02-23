@@ -3,17 +3,18 @@ import findColor from "../scripts/findColor";
 import { Link } from "react-router-dom";
 
 const ItemCard = (props) => {
+  const findColorByType = () => {
+    return {
+      backgroundColor: findColor(props.types[0]) + 70,
+      borderColor: findColor(
+        props.types.length > 1 ? props.types[1] : props.types[0]
+      ),
+    };
+  };
+
   return (
     <Link to={"/" + props.name}>
-      <div
-        className={classes.container}
-        style={{
-          backgroundColor: findColor(props.types[0]) + 70,
-          borderColor: findColor(
-            props.types.length > 1 ? props.types[1] : props.types[0]
-          ),
-        }}
-      >
+      <div className={classes.container} style={findColorByType()}>
         <div className={classes["price-tag"]}>${props.price}</div>
         <img
           className={classes.image}

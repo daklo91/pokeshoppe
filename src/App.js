@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import FrontPage from "./pages/FrontPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DetailPage from "./pages/DetailPage";
 import CartPage from "./pages/CartPage";
 
@@ -40,9 +40,9 @@ const App = () => {
                     return response.json();
                   })
                   .then((speciesData) => {
-                    const description = speciesData.flavor_text_entries
-                      .reverse()
-                      .find((x) => x.language.name === "en");
+                    const description = speciesData.flavor_text_entries.find(
+                      (x) => x.language.name === "en"
+                    );
                     object.species = speciesData.genera[7].genus;
                     object.description = description.flavor_text;
                   });
@@ -71,26 +71,22 @@ const App = () => {
   };
 
   return (
-    <Fragment>
-      <Router>
-        <Header cartLength={cart.length} />
-        <Routes>
-          <Route path="/" element={<FrontPage pokemonData={pokemonData} />} />
-          <Route
-            path="/cart"
-            element={
-              <CartPage cartInfo={cart} RemoveFromCart={RemoveFromCart} />
-            }
-          />
-          <Route
-            path="/:pokemonName"
-            element={
-              <DetailPage pokemonData={pokemonData} AddToCart={AddToCart} />
-            }
-          />
-        </Routes>
-      </Router>
-    </Fragment>
+    <Router>
+      <Header cartLength={cart.length} />
+      <Routes>
+        <Route path="/" element={<FrontPage pokemonData={pokemonData} />} />
+        <Route
+          path="/:pokemonName"
+          element={
+            <DetailPage pokemonData={pokemonData} AddToCart={AddToCart} />
+          }
+        />
+        <Route
+          path="/cart"
+          element={<CartPage cartInfo={cart} RemoveFromCart={RemoveFromCart} />}
+        />
+      </Routes>
+    </Router>
   );
 };
 

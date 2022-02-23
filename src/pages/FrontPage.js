@@ -1,5 +1,5 @@
+import { Fragment } from "react";
 import ItemAdvertise from "../components/ItemAdvertise";
-import classes from "./FrontPage.module.css";
 
 const FrontPage = (props) => {
   return (
@@ -7,7 +7,7 @@ const FrontPage = (props) => {
       {props.pokemonData.length < 140 ? (
         <h1>Loading ...</h1>
       ) : (
-        <div className={classes["advertise-container"]}>
+        <Fragment>
           <ItemAdvertise
             pokemonData={props.pokemonData}
             pokemonsToRender={[151, 25, 6, 144, 41, 124]}
@@ -32,7 +32,7 @@ const FrontPage = (props) => {
           >
             Shockingly cheap ⚡
           </ItemAdvertise>
-        </div>
+        </Fragment>
       )}
     </main>
   );

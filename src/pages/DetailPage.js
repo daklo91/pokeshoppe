@@ -1,5 +1,5 @@
-import classes from "./DetailPage.module.css";
 import { Link, useParams } from "react-router-dom";
+import classes from "./DetailPage.module.css";
 import ItemAdvertise from "../components/ItemAdvertise";
 import findColor from "../scripts/findColor";
 
@@ -9,10 +9,19 @@ const DetailPage = (props) => {
     (pokemon) => pokemon.name === pokemonName
   );
 
+  const findColorByType = () => {
+    return {
+      backgroundColor: findColor(pokemon.types[0]) + 70,
+      borderColor: findColor(
+        pokemon.types.length > 1 ? pokemon.types[1] : pokemon.types[0]
+      ),
+    };
+  };
+
   return pokemon ? (
     <main>
       <div className={classes.container}>
-        <Link to="/">Back to browsing</Link>
+        <h1 className={classes.name}>{pokemon.name}</h1>
         <img
           className={classes.image}
           src={pokemon.image}
@@ -22,20 +31,18 @@ const DetailPage = (props) => {
           <div>Species: {pokemon.species}</div>
           <div>Height: {pokemon.height / 10}m</div>
           <div>Weight: {pokemon.weight / 10}kg</div>
+          <p className={classes["pokemon-description"]}>
+            {pokemon.description}
+          </p>
         </div>
-        <p className={classes["pokemon-description"]}>{pokemon.description}</p>
         <button
           onClick={() => props.AddToCart(pokemon)}
           className={classes["add-to-cart-button"]}
-          style={{
-            backgroundColor: findColor(pokemon.types[0]) + 70,
-            borderColor: findColor(
-              pokemon.types.length > 1 ? pokemon.types[1] : pokemon.types[0]
-            ),
-          }}
+          style={findColorByType()}
         >
           Buy for ${pokemon.price}
         </button>
+        <Link to="/">Back to browsing</Link>
         <ItemAdvertise
           pokemonData={props.pokemonData}
           pokemonsToRender={
