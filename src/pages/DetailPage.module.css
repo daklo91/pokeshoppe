@@ -46,4 +46,9 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+  transition: transform 0.1s;
+}
+
+.add-to-cart-button:active {
+  transform: scale(1.05);
 }

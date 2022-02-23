@@ -6,6 +6,11 @@
   width: 147px;
   text-align: center;
   padding-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.container:hover {
+  transform: scale(1.05);
 }
 
 .price-tag {

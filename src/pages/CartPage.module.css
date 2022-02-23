@@ -55,10 +55,15 @@
   margin-top: 30px;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: transform 0.1s;
 }
 
 .checkout-button:hover {
   background-color: #414141;
+}
+
+.checkout-button:active {
+  transform: scale(1.05);
 }
 
 @media screen and (min-width: 500px) {
